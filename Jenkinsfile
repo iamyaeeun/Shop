@@ -4,7 +4,7 @@ node {
         git 'https://github.com/iamyaeeun/Shop.git'
     }
     stage('Build image') {
-        app = docker.build("hyaeeun/test")
+        app = docker.build("hyaeeun/opensource")
     }
     /*
     stage('Test image') {
