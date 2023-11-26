@@ -18,13 +18,14 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     //회원 가입
-    @Transactional //readOnly = false
+    @Transactional //변경, readOnly = false
     public Long join(Member member) {
         validateDuplicateMember(member);
         memberRepository.save(member);
         return member.getId();
     }
 
+    //중복 회원 검증
     private void validateDuplicateMember(Member member) {
         List<Member> findMembers = memberRepository.findByName(member.getName());
         if(!findMembers().isEmpty()) {
@@ -32,10 +33,12 @@ public class MemberService {
         }
     }
 
+    //전체 회원 조회
     public List<Member> findMembers() {
         return memberRepository.findAll();
     }
 
+    //특정 회원 조회
     public Member findOne(Long memberId) {
         return memberRepository.findOne(memberId);
     }
