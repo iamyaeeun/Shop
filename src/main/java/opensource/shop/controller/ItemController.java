@@ -20,12 +20,14 @@ public class ItemController {
 
     private final ItemService itemService;
 
+    //상품 등록 폼
     @GetMapping("/items/new")
     public String createForm(Model model) {
         model.addAttribute("form", new BookForm());
         return "items/createItemForm";
     }
 
+    //상품 등록
     @PostMapping("/items/new")
     public String create(BookForm form) {
         Book book = new Book();
@@ -47,6 +49,7 @@ public class ItemController {
         return "items/itemList";
     }
 
+    //상품 수정 폼
     @GetMapping("items/{itemId}/edit")
     public String updateItemForm(@PathVariable("itemId") Long itemId, Model model) {
         Book item = (Book) itemService.findOne(itemId);
@@ -63,6 +66,7 @@ public class ItemController {
         return "items/updateItemForm";
     }
 
+    //상품 수정
     @PostMapping("items/{itemId}/edit")
     public String updateItem(@PathVariable Long itemId, @ModelAttribute("form") BookForm form) {
 
