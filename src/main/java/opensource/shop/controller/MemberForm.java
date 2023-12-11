@@ -9,9 +9,9 @@ import javax.validation.constraints.NotEmpty;
 public class MemberForm {
 
     @NotEmpty(message = "회원 이름은 필수입니다")
-    private String name;
+    private String name; //이름
 
-    private String city;
-    private String street;
-    private String zipcode;
+    private String city; //도시
+    private String street; //번지수
+    private String zipcode; //우편번호
 }
