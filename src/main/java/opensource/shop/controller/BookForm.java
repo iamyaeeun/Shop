@@ -8,10 +8,10 @@ public class BookForm {
 
     private Long id;
 
-    private String name;
-    private int price;
-    private int stockQuantity;
+    private String name; //상품 이름
+    private int price; //상품 가격
+    private int stockQuantity; //상품 수량
 
-    private String author;
+    private String author; //저자
     private String isbn;
 }
