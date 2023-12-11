@@ -22,6 +22,7 @@ public class OrderController {
     private final MemberService memberService;
     private final ItemService itemService;
 
+    //상품 주문 폼
     @GetMapping("/order")
     public String createForm(Model model) {
 
@@ -34,6 +35,7 @@ public class OrderController {
         return "order/orderForm";
     }
 
+    //상품 주문
     @PostMapping("/order")
     public String order(@RequestParam("memberId") Long memberId,
                         @RequestParam("itemId") Long itemId,
@@ -43,6 +45,7 @@ public class OrderController {
         return "redirect:/orders";
     }
 
+    //주문 목록 조회
     @GetMapping("/orders")
     public String orderList(@ModelAttribute("orderSearch") OrderSearch orderSearch, Model model) {
         List<Order> orders = orderService.findOrders(orderSearch);
@@ -51,6 +54,7 @@ public class OrderController {
         return "order/orderList";
     }
 
+    //주문 취소
     @PostMapping("/orders/{orderId}/cancel")
     public String cancelOrder(@PathVariable("orderId") Long orderId) {
         orderService.cancelOrder(orderId);
