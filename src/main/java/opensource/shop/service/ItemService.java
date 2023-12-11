@@ -16,11 +16,13 @@ public class ItemService {
 
     private final ItemRepository itemRepository;
 
+    //상품 저장
     @Transactional
     public void saveItem(Item item) {
         itemRepository.save(item);
     }
 
+    //상품 수정
     @Transactional
     public void updateItem(Long itemId, String name, int price, int stockQuantity) {
         Item findItem = itemRepository.findOne(itemId);
@@ -29,10 +31,12 @@ public class ItemService {
         findItem.setStockQuantity(stockQuantity);
     }
 
+    //모든 상품 조회
     public List<Item> findItems() {
         return itemRepository.findAll();
     }
 
+    //특정 상품 조회
     public Item findOne(Long itemId) {
         return itemRepository.findOne(itemId);
     }
