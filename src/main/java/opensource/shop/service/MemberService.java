@@ -33,7 +33,7 @@ public class MemberService {
         }
     }
 
-    //전체 회원 조회
+    //모든 회원 조회
     public List<Member> findMembers() {
         return memberRepository.findAll();
     }
