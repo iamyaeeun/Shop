@@ -27,7 +27,7 @@ node {
     stage('Deploy to GKE') {
         if (env.BRANCH_NAME == 'master') {
             // Replace image tag in deployment.yaml with the current build ID
-            sh "sed -i 's/hyaeeun/opensource:latest/hyaeeun/opensource:${env.BUILD_ID}/g' deployment.yaml"
+            sed -i 's/hyaeeun\/opensource:latest/hyaeeun\/opensource:${env.BUILD_ID}/g' deployment.yaml
 
             // Deploy to GKE using KubernetesEngineBuilder
             step([$class: 'KubernetesEngineBuilder', 
