@@ -18,19 +18,6 @@ node {
         }
     }
     stage('Deploy to GKE') {
-        script {
-            sh "sed -i 's/hyaeeun\\/opensource:latest/hyaeeun\\/opensource:\${env.BUILD_ID}/g' deployment.yml"
-        }
-
-        // Deploy to GKE using KubernetesEngineBuilder
-        step([$class: 'KubernetesEngineBuilder', 
-              projectId: env.PROJECT_ID, 
-              clusterName: env.CLUSTER_NAME, 
-              location: env.LOCATION, 
-              manifestPattern: 'deployment.yml', 
-              credentialsId: env.CREDENTIALS_ID, 
-              verifyDeployments: true])
-        /*
         if (env.BRANCH_NAME == 'master') {
             // Replace image tag in deployment.yaml with the current build ID
             script {
@@ -46,6 +33,5 @@ node {
                   credentialsId: env.CREDENTIALS_ID, 
                   verifyDeployments: true])
         }
-        */
     }
 }
