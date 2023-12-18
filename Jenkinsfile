@@ -9,15 +9,8 @@ node {
         git 'https://github.com/iamyaeeun/Shop.git'
     }
     stage('Build image') {
-        app = docker.build("hyaeeun/opensource")
+        app = docker.build("hyaeeun/opensource:${env.BUILD_ID}")
     }
-    /*
-    stage('Test image') {
-        app.inside {
-            sh 'make test'
-        }
-    }
-    */
     stage('Push image') {
         docker.withRegistry('https://registry.hub.docker.com', 'hyaeeun') {
            app.push("${env.BUILD_NUMBER}")
@@ -25,6 +18,19 @@ node {
         }
     }
     stage('Deploy to GKE') {
+        script {
+            sh "sed -i 's/hyaeeun\\/opensource:latest/hyaeeun\\/opensource:\${env.BUILD_ID}/g' deployment.yaml"
+        }
+
+        // Deploy to GKE using KubernetesEngineBuilder
+        step([$class: 'KubernetesEngineBuilder', 
+              projectId: env.PROJECT_ID, 
+              clusterName: env.CLUSTER_NAME, 
+              location: env.LOCATION, 
+              manifestPattern: 'deployment.yaml', 
+              credentialsId: env.CREDENTIALS_ID, 
+              verifyDeployments: true])
+        /*
         if (env.BRANCH_NAME == 'master') {
             // Replace image tag in deployment.yaml with the current build ID
             script {
@@ -40,5 +46,6 @@ node {
                   credentialsId: env.CREDENTIALS_ID, 
                   verifyDeployments: true])
         }
+        */
     }
 }
