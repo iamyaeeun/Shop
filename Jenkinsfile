@@ -26,11 +26,11 @@ node {
 
             // Deploy to GKE using KubernetesEngineBuilder
             step([$class: 'KubernetesEngineBuilder', 
-                  projectId: env.PROJECT_ID, 
-                  clusterName: env.CLUSTER_NAME, 
-                  location: env.LOCATION, 
+                  projectId: PROJECT_ID, 
+                  clusterName: CLUSTER_NAME, 
+                  location: LOCATION, 
                   manifestPattern: 'deployment.yml', 
-                  credentialsId: env.CREDENTIALS_ID, 
+                  credentialsId: CREDENTIALS_ID, 
                   verifyDeployments: true])
         }
     }
