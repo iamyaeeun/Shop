@@ -19,7 +19,7 @@ node {
     }
     */
     stage('Push image') {
-        docker.withRegistry('https://registry.hub.docker.com', 'hyaeeun') {
+        docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
            app.push("${env.BUILD_NUMBER}")
            app.push("latest")
         }
@@ -27,7 +27,7 @@ node {
     stage('Deploy to GKE') {
         if (env.BRANCH_NAME == 'master') {
             // Replace image tag in deployment.yaml with the current build ID
-            sed -i 's/hyaeeun\/opensource:latest/hyaeeun\/opensource:${env.BUILD_ID}/g' deployment.yaml
+            sed -i 's/opensource:latest/opensource:${env.BUILD_ID}/g' deployment.yaml
 
             // Deploy to GKE using KubernetesEngineBuilder
             step([$class: 'KubernetesEngineBuilder', 
