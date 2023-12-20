@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: deployment
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: web
@@ -15,3 +15,18 @@ spec:
       containers:
       - name: open
         image: hyaeeun/shop:latest
+        imagePullPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-service-lb
+spec:
+  selector:
+    app: web
+  ports:
+  - name: webserver
+    protocol: TCP
+    port: 80
+    targetPort: 8080
+  type: LoadBalancer
