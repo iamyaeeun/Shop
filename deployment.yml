@@ -14,4 +14,4 @@ spec:
     spec:
       containers:
       - name: open
-        image: hyaeeun/opensource:latest
+        image: hyaeeun/shop:latest
