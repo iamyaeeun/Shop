@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: deployment
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: web
@@ -13,5 +13,5 @@ spec:
         app: web
     spec:
       containers:
-      - name: open
+      - name: shop
         image: hyaeeun/shop:latest
