@@ -9,6 +9,7 @@ node {
         git 'https://github.com/iamyaeeun/Shop.git'
     }
     stage('Build image') {
+        sh './gradlew build'
         app = docker.build("hyaeeun/shop:${env.BUILD_ID}")
     }
     stage('Push image') {
