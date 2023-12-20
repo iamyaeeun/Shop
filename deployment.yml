@@ -13,7 +13,7 @@ spec:
         app: web
     spec:
       containers:
-      - name: open
+      - name: shop
         image: hyaeeun/shop:latest
         imagePullPolicy: Always
 ---
