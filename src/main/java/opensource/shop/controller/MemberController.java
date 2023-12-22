@@ -32,7 +32,7 @@ public class MemberController {
             return "members/createMemberForm";
         }
 
-        Address address = new Address(form.getCity(), form.getStreet(), form.getZipcode());
+        Address address = new Address(form.getCity(), form.getStreet(), form.getZipcode()); //city,street,zipcode 묶어서 주소로 사용
 
         Member member = new Member();
         member.setName(form.getName());

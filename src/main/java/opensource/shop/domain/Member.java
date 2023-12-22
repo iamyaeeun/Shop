@@ -20,6 +20,7 @@ public class Member {
     @Embedded
     private Address address;
 
+    // 회원의 주문 내역
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
 }
