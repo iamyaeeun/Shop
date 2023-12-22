@@ -25,7 +25,7 @@ bin/
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-# 추가
+# 추가함
 application.yml
 
 ### NetBeans ###
