@@ -45,13 +45,6 @@ public class OrderController {
         return "redirect:/orders";
     }
 
-    //주문 취소
-    @PostMapping("/orders/{orderId}/cancel")
-    public String cancelOrder(@PathVariable("orderId") Long orderId) {
-        orderService.cancelOrder(orderId);
-        return "redirect:/orders";
-    }
-
     //주문 목록 조회
     @GetMapping("/orders")
     public String orderList(@ModelAttribute("orderSearch") OrderSearch orderSearch, Model model) {
@@ -59,5 +52,12 @@ public class OrderController {
         model.addAttribute("orders", orders);
 
         return "order/orderList";
+    }
+
+    //주문 취소
+    @PostMapping("/orders/{orderId}/cancel")
+    public String cancelOrder(@PathVariable("orderId") Long orderId) {
+        orderService.cancelOrder(orderId);
+        return "redirect:/orders";
     }
 }

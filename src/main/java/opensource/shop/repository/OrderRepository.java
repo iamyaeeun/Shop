@@ -54,7 +54,7 @@ public class OrderRepository {
             jpql += " m.name like :name";
         }
         TypedQuery<Order> query = em.createQuery(jpql, Order.class)
-                .setMaxResults(100); //최대 100건
+                .setMaxResults(1000); //최대 1000건
         if (orderSearch.getOrderStatus() != null) {
             query = query.setParameter("status", orderSearch.getOrderStatus());
         }
@@ -83,7 +83,7 @@ public class OrderRepository {
             criteria.add(name);
         }
         cq.where(cb.and(criteria.toArray(new Predicate[criteria.size()])));
-        TypedQuery<Order> query = em.createQuery(cq).setMaxResults(100); //최대 100건
+        TypedQuery<Order> query = em.createQuery(cq).setMaxResults(1000); //최대 1000건
         return query.getResultList();
     }
 }

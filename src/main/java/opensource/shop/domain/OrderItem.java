@@ -42,13 +42,13 @@ public class OrderItem {
         return orderItem;
     }
 
-    //조회 로직
-    public int getTotalPrice() {
-        return getOrderPrice() * getCount();
-    }
-
     //비즈니스 로직
     public void cancel() {
         getItem().addStock(count);
+    }
+
+    //조회 로직
+    public int getTotalPrice() {
+        return getOrderPrice() * getCount();
     }
 }
